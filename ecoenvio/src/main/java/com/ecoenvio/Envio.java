@@ -70,6 +70,27 @@ public class Envio {
             costo = 20.00 + (1.20 * distanciaKm);
         }
 
+        // Recargo por volumen
+        double volumen = dimensiones.calcularVolumen();
+
+        if (volumen > 50000) {
+            costo = costo + 15.00;
+        }
+
+        // Descuento por membresía
+        if (cliente.getTipoMembresia().equals("PREMIUM")) {
+            costo = costo * 0.90;
+        } else if (cliente.getTipoMembresia().equals("VIP")) {
+            costo = costo * 0.80;
+        }
+
+        // Ajuste por método de pago
+        if (metodoPago.equals("TRANSFERENCIA")) {
+            costo = costo * 0.95;
+        } else if (metodoPago.equals("TARJETA")) {
+            costo = costo * 1.03;
+        }
+
         return costo;
     }
 }
