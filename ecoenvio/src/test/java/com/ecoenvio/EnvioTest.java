@@ -139,4 +139,42 @@ public class EnvioTest {
                 IllegalArgumentException.class,
                 () -> envio.calcularCostoTotal());
     }
+
+    @Test
+    public void lanzarErrorDistanciaNegativa() {
+
+        Dimensiones dimensiones = new Dimensiones(20, 20, 20);
+        Cliente cliente = new Cliente("Juan", "REGULAR");
+
+        Envio envio = new Envio(
+                "ENV-008",
+                4,
+                -10,
+                "EFECTIVO",
+                dimensiones,
+                cliente);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> envio.calcularCostoTotal());
+    }
+
+    @Test
+    public void lanzarErrorMetodoPagoInvalido() {
+
+        Dimensiones dimensiones = new Dimensiones(20, 20, 20);
+        Cliente cliente = new Cliente("Juan", "REGULAR");
+
+        Envio envio = new Envio(
+                "ENV-009",
+                4,
+                10,
+                "CHEQUE",
+                dimensiones,
+                cliente);
+
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> envio.calcularCostoTotal());
+    }
 }
