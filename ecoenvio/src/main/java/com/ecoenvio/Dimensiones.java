@@ -12,6 +12,18 @@ public class Dimensiones {
         this.largo = largo;
     }
 
+    public double getAlto() {
+        return alto;
+    }
+
+    public double getAncho() {
+        return ancho;
+    }
+
+    public double getLargo() {
+        return largo;
+    }
+
     public double calcularVolumen() {
         return alto * ancho * largo;
     }
